@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #1a0f2e;
+  --foreground: #ede4f7;
+  --surface: #261a3d;
+  --muted: #a99bc4;
+  --accent: #c4a7f5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+}
+
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.glow {
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196, 167, 245, 0.2), transparent 70%);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-bg {
+  animation: hero-bg-in 1.2s ease-out forwards;
+}
+
+@keyframes hero-bg-in {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-in {
+  animation: fade-in 0.9s ease-out forwards;
+}
+
+.image-tone {
+  filter: grayscale(100%) contrast(0.95) brightness(0.82);
+}
+
+.image-tone-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(26, 15, 46, 0.55) 0%,
+    rgba(26, 15, 46, 0.2) 50%,
+    rgba(196, 167, 245, 0.08) 100%
+  );
+}
+
+.bio-portrait-blend {
+  filter: grayscale(100%) contrast(1.02) brightness(0.94);
+}
