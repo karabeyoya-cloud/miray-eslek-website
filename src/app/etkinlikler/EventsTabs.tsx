@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
+import { PageShell } from "@/components/PageShell";
 import { EventEmpty, EventList } from "@/components/EventList";
 import { events } from "@/data/content";
 
@@ -46,13 +47,13 @@ export function EventsTabs() {
   };
 
   return (
-    <div className="relative z-10 mx-auto max-w-6xl px-6 pt-32 pb-24">
+    <PageShell>
       <PageHeader
         title="Etkinlikler"
         description="Konserler, sahne performansları ve atölyeler."
       />
 
-      <div className="relative z-20 mb-10 flex flex-wrap gap-2" role="tablist">
+      <div className="relative z-20 mb-8 flex flex-wrap gap-2" role="tablist">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -78,6 +79,6 @@ export function EventsTabs() {
           <EventList items={list} />
         )}
       </div>
-    </div>
+    </PageShell>
   );
 }

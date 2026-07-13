@@ -28,6 +28,19 @@ npx vercel
 npx vercel --prod
 ```
 
+## Contact form (direct email)
+
+The form sends messages to `mirayeslek@gmail.com` via [Web3Forms](https://web3forms.com) (free tier).
+
+1. Go to [web3forms.com](https://web3forms.com) and create an access key for `mirayeslek@gmail.com`.
+2. In Vercel → **Project → Settings → Environment Variables**, add:
+   - **Name:** `WEB3FORMS_ACCESS_KEY`
+   - **Value:** your access key from Web3Forms
+   - **Environment:** Production (and Preview if you want)
+3. **Redeploy** the project.
+
+Until this key is set, the form shows a configuration error on submit.
+
 ## Content
 
 Edit `src/data/content.ts` and images in `public/images/`.

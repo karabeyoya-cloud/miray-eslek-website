@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
+import { PageShell } from "@/components/PageShell";
 import { mediaSections } from "@/data/content";
 
 export const metadata: Metadata = {
@@ -15,13 +16,13 @@ const sectionLabels: Record<keyof typeof mediaSections, string> = {
 
 export default function MediaPage() {
   return (
-    <div className="mx-auto max-w-2xl px-6 pt-32 pb-24">
+    <PageShell reading>
       <PageHeader
         title="Medya"
         description="Video, fotoğraf, ses kayıtları ve basın. İçerikler yakında eklenecek."
       />
 
-      <div className="space-y-20">
+      <div className="space-y-14">
         {(Object.keys(mediaSections) as Array<keyof typeof mediaSections>).map(
           (key) => {
             const items = mediaSections[key];
@@ -35,11 +36,11 @@ export default function MediaPage() {
                 {items.length === 0 ? (
                   <p className="mt-4 text-sm text-muted">Yakında eklenecek.</p>
                 ) : (
-                  <div className="mt-8 space-y-10">
+                  <div className="mt-6 space-y-8">
                     {items.map((item) => (
                       <article
                         key={item.title}
-                        className="border-b border-border pb-10 last:border-0"
+                        className="border-b border-border pb-8 last:border-0"
                       >
                         <p className="text-sm text-accent">
                           {item.category} · {item.year}
@@ -71,6 +72,6 @@ export default function MediaPage() {
           },
         )}
       </div>
-    </div>
+    </PageShell>
   );
 }

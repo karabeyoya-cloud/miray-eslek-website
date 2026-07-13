@@ -14,25 +14,47 @@ const subjectLabels: Record<string, string> = {
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = String(data.get("name") ?? "");
-    const email = String(data.get("email") ?? "");
-    const subjectKey = String(data.get("subject") ?? "diger");
-    const message = String(data.get("message") ?? "");
-    const subjectLabel = subjectLabels[subjectKey] ?? "İletişim";
-    const mailSubject = `Miray Eslek — ${subjectLabel}`;
-    const mailBody = `Ad Soyad: ${name}\nE-posta: ${email}\n\n${message}`;
+    setLoading(true);
+    setError(null);
 
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
-    setSubmitted(true);
+    const data = new FormData(e.currentTarget);
+    const payload = {
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      subject: String(data.get("subject") ?? "diger"),
+      message: String(data.get("message") ?? ""),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        setError(result.error ?? "Mesaj gönderilemedi. Lütfen tekrar deneyin.");
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError("Bağlantı hatası. Lütfen tekrar deneyin veya doğrudan e-posta gönderin.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
-    <div className="grid gap-16 lg:grid-cols-2">
-      <div className="space-y-8">
+    <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-12">
+      <div className="space-y-6">
         <div>
           <p className="text-sm text-muted">E-posta</p>
           <a
@@ -47,13 +69,13 @@ export function ContactForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="rounded-2xl border border-border bg-surface p-6 sm:p-8"
+        className="rounded-2xl border border-border bg-surface p-6 sm:p-8 lg:mt-0"
       >
         {submitted ? (
           <div className="py-16 text-center">
             <p className="text-lg text-fg">Teşekkürler.</p>
             <p className="mt-3 text-sm text-muted">
-              E-posta uygulamanız açılacak. Gönderdikten sonra mesajınız iletilecektir.
+              Mesajınız {site.email} adresine iletildi. En kısa sürede dönüş yapılacaktır.
             </p>
           </div>
         ) : (
@@ -68,7 +90,8 @@ export function ContactForm() {
                   name="name"
                   type="text"
                   required
-                  className="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-fg outline-none focus:border-accent"
+                  disabled={loading}
+                  className="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-fg outline-none focus:border-accent disabled:opacity-60"
                 />
               </div>
               <div>
@@ -80,7 +103,8 @@ export function ContactForm() {
                   name="email"
                   type="email"
                   required
-                  className="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-fg outline-none focus:border-accent"
+                  disabled={loading}
+                  className="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-fg outline-none focus:border-accent disabled:opacity-60"
                 />
               </div>
               <div>
@@ -90,13 +114,14 @@ export function ContactForm() {
                 <select
                   id="subject"
                   name="subject"
-                  className="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-fg outline-none focus:border-accent"
+                  disabled={loading}
+                  className="mt-2 w-full rounded-lg border border-border bg-bg px-4 py-3 text-sm text-fg outline-none focus:border-accent disabled:opacity-60"
                 >
-                  <option value="konser">Konser / Performans</option>
-                  <option value="atolye">Atölye</option>
-                  <option value="isbirligi">İşbirliği</option>
-                  <option value="basin">Basın</option>
-                  <option value="diger">Diğer</option>
+                  {Object.entries(subjectLabels).map(([value, label]) => (
+                    <option key={value} value={value}>
+                      {label}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div>
@@ -108,15 +133,24 @@ export function ContactForm() {
                   name="message"
                   rows={4}
                   required
-                  className="mt-2 w-full resize-none rounded-lg border border-border bg-bg px-4 py-3 text-sm text-fg outline-none focus:border-accent"
+                  disabled={loading}
+                  className="mt-2 w-full resize-none rounded-lg border border-border bg-bg px-4 py-3 text-sm text-fg outline-none focus:border-accent disabled:opacity-60"
                 />
               </div>
             </div>
+
+            {error ? (
+              <p className="mt-4 text-sm text-red-300" role="alert">
+                {error}
+              </p>
+            ) : null}
+
             <button
               type="submit"
-              className="mt-6 w-full rounded-full bg-accent py-3 text-sm font-medium text-bg transition-opacity hover:opacity-90"
+              disabled={loading}
+              className="mt-6 w-full rounded-full bg-accent py-3 text-sm font-medium text-bg transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Gönder
+              {loading ? "Gönderiliyor…" : "Gönder"}
             </button>
           </>
         )}

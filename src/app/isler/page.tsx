@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
+import { PageShell } from "@/components/PageShell";
 import { worksSections } from "@/data/content";
 
 export const metadata: Metadata = {
@@ -9,38 +10,38 @@ export const metadata: Metadata = {
 
 export default function WorksPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 pt-32 pb-24">
+    <PageShell>
       <PageHeader
         title="Çalışmalar"
         description="Tiyatro, performans ve soundpainting pratikleri."
       />
 
-      <div className="space-y-16">
+      <div className="max-w-3xl space-y-10">
         {worksSections.map((section) => (
           <section
             key={section.id}
             id={section.id}
-            className="scroll-mt-28 border-b border-border pb-16 last:border-0"
+            className="scroll-mt-28 border-b border-border pb-10 last:border-0"
           >
-            <div className="grid gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-start md:gap-10">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-border md:aspect-[4/3]">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5">
+              <div className="relative h-36 w-full shrink-0 overflow-hidden rounded-lg border border-border sm:h-28 sm:w-40">
                 <Image
                   src={section.image}
                   alt={section.title}
                   fill
                   className="image-tone object-cover"
-                  sizes="(max-width: 768px) 100vw, 400px"
+                  sizes="(max-width: 640px) 100vw, 160px"
                 />
                 <div
                   className="image-tone-overlay pointer-events-none absolute inset-0"
                   aria-hidden
                 />
               </div>
-              <div>
-                <h2 className="font-display text-xl font-semibold text-fg md:text-2xl">
+              <div className="min-w-0 flex-1">
+                <h2 className="font-display text-lg font-semibold text-fg md:text-xl">
                   {section.title}
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">
+                <p className="mt-2 text-sm leading-relaxed text-muted">
                   {section.description}
                 </p>
               </div>
@@ -48,6 +49,6 @@ export default function WorksPage() {
           </section>
         ))}
       </div>
-    </div>
+    </PageShell>
   );
 }

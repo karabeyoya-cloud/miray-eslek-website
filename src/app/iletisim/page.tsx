@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/Contact";
 import { PageHeader } from "@/components/PageHeader";
+import { PageShell } from "@/components/PageShell";
 
 export const metadata: Metadata = {
   title: "İletişim — Miray Eslek",
@@ -8,12 +9,12 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 pt-32 pb-24">
+    <PageShell>
       <PageHeader
         title="İletişim"
         description="Konser, atölye, işbirliği ve basın talepleri için birlikte çalışalım."
       />
       <ContactForm />
-    </div>
+    </PageShell>
   );
 }

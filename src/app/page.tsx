@@ -66,8 +66,6 @@ export default function Home() {
             {site.tagline}
           </p>
 
-          <p className="mt-3 text-sm text-muted">{site.role}</p>
-
           <div className="mt-8">
             <SocialIcons size={22} />
           </div>
