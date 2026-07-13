@@ -66,14 +66,14 @@ export function EventCards({ items }: { items: EventItem[] }) {
 
 export function EventList({ items }: { items: EventItem[] }) {
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {items.map((event) => (
         <article
           key={`${event.date}-${event.title}`}
-          className="group flex gap-5 rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-accent/30 sm:items-center"
+          className="group flex gap-4 rounded-xl border border-border bg-surface p-4 transition-colors hover:border-accent/30 sm:items-center sm:gap-5 sm:p-5"
         >
           <div
-            className={`relative hidden h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br sm:block ${categoryGradients[event.category]}`}
+            className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-gradient-to-br sm:h-20 sm:w-20 sm:rounded-xl ${categoryGradients[event.category]}`}
           >
             {event.image ? (
               <Image
@@ -81,20 +81,22 @@ export function EventList({ items }: { items: EventItem[] }) {
                 alt={event.title}
                 fill
                 className="object-cover object-[center_20%]"
-                sizes="80px"
+                sizes="(max-width: 640px) 64px, 80px"
               />
             ) : null}
           </div>
           <div className="min-w-0 flex-1">
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
               <span className="text-xs text-accent">{categoryLabels[event.category]}</span>
               <span className="text-xs tabular-nums text-muted">
                 {event.month && `${event.month} `}
                 {event.date}
               </span>
             </div>
-            <h3 className="mt-1 font-display text-lg font-medium text-fg">{event.title}</h3>
-            <p className="mt-2 text-sm text-muted">
+            <h3 className="mt-1 font-display text-base font-medium text-fg sm:text-lg">
+              {event.title}
+            </h3>
+            <p className="mt-1.5 text-sm text-muted">
               {event.venue} · {event.role}
             </p>
             {event.description ? (

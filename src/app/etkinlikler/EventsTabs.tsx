@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
-import { EventCards, EventEmpty } from "@/components/EventList";
+import { EventEmpty, EventList } from "@/components/EventList";
 import { events } from "@/data/content";
 
 const tabs = [
@@ -75,7 +75,7 @@ export function EventsTabs() {
         {list.length === 0 ? (
           <EventEmpty message={emptyMessages[activeTab]} />
         ) : (
-          <EventCards items={list} />
+          <EventList items={list} />
         )}
       </div>
     </div>
