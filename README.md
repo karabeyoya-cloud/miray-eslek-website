@@ -17,8 +17,8 @@ Open [http://localhost:3000](http://localhost:3000). If the port is busy, stop o
 2. Sign in at [vercel.com](https://vercel.com) → **Add New Project** → import the repo.
 3. Framework preset: **Next.js** (auto-detected). No extra build settings needed.
 4. Deploy. Vercel assigns a `*.vercel.app` URL.
-5. Optional: add custom domain in Vercel → **Domains** (e.g. `mirayeslek.com`).
-6. Optional env var: `NEXT_PUBLIC_SITE_URL=https://your-domain.com` for sitemap/OG canonical URLs.
+5. Custom domain: `www.mirayeslek.com` (see DNS steps below).
+6. Env var in Vercel: `NEXT_PUBLIC_SITE_URL` = `https://www.mirayeslek.com`
 
 ### CLI deploy (alternative)
 

@@ -15,7 +15,6 @@ export const site = {
   },
   images: {
     poster: "/images/poster-cerkes-ridvan.jpg",
-    portrait: "/images/portre-studyo.jpg",
     hero: "/images/hero-sahne.jpg",
     bioImage: "/images/sokak-performans.jpg",
     afife: "/images/afife-odul.jpg",
