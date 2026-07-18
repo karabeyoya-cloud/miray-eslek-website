@@ -52,13 +52,13 @@ export const featuredWorks = [
     title: "Tiyatro & Sahne",
     description: "Sahne müziği ve tiyatro projeleri.",
     image: "/images/poster-cerkes-ridvan.jpg",
-    href: "/isler#tiyatro",
+    href: "/isler/tiyatro",
   },
   {
     title: "Soundpainting",
     description: "Kolektif doğaçlama ve canlı kompozisyon.",
-    image: "/images/soundpainting-atolyetez.jpg",
-    href: "/isler#soundpainting",
+    image: "/images/sp-ihtimaller-afis.jpg",
+    href: "/isler/soundpainting-ve-ihtimaller",
   },
   {
     title: "Performanslar",
@@ -102,6 +102,11 @@ export const gundemItems: GundemItem[] = [
   },
 ];
 
+export type MediaLink = {
+  label: string;
+  href: string;
+};
+
 export type MediaItem = {
   title: string;
   category: string;
@@ -109,20 +114,244 @@ export type MediaItem = {
   description?: string;
   href?: string;
   external?: string;
+  links?: MediaLink[];
+  image?: string;
+  imagePosition?: string;
 };
 
 export const mediaSections = {
   video: [
     {
-      title: "İstanbul Soundpainting Orkestra",
-      category: "Kolektif doğaçlama",
+      title: "İstanbul Soundpainting Orchestra — Ç.A.K. Full Concert",
+      category: "Soundpainting",
+      year: "2016",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=Ysckk5LTztE",
+        },
+      ],
+    },
+    {
+      title: "İstanbul Soundpainting Orchestra — GitarLive",
+      category: "Soundpainting · Kolaj",
+      year: "2019",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=5pxOEkebV0w",
+        },
+      ],
+    },
+    {
+      title: "See Waves In Series",
+      category: "MIAM Improvisation Ensemble",
+      year: "2020",
+      description: "Miray Eslek with MIAM Improvisation Ensemble",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=IRWQ82KKfr0",
+        },
+      ],
+    },
+    {
+      title: "Unexpected Duet",
+      category: "MIAM Improvisation Ensemble",
+      year: "2020",
+      description: "Ceyda Atay & Miray Eslek",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=6dWXdJ4aC30",
+        },
+      ],
+    },
+    {
+      title: "Vida",
+      category: "MIAM Improvisation Ensemble",
       year: "2021",
-      description: "Canlı kompozisyon ve doğaçlama üzerine performans kaydı.",
-      external: "https://www.youtube.com/watch?v=5pxOEkebV0w",
+      description: "Miray Eslek with MIAM Improvisation Ensemble",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=WBepx1vaqkU",
+        },
+      ],
+    },
+    {
+      title: "Soundmap",
+      category: "Soundpainting Lab Ensemble",
+      year: "2021",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=jMxi6p4ySFo",
+        },
+      ],
+    },
+    {
+      title: "Soundsurfing — Premier Version",
+      category: "Soundpainting Lab Ensemble",
+      year: "2021",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=Iv7604okdUg",
+        },
+      ],
+    },
+    {
+      title: "The Colors Behind The Mask (A Party of Life's Passing)",
+      category: "Soundpainting Lab Ensemble",
+      year: "2021",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=hGHRkygdM2Y",
+        },
+      ],
+    },
+    {
+      title: "Soundpainting Think Tank",
+      category: "Soundpainting",
+      year: "2022",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=sdU8KqEAZuE",
+        },
+      ],
+    },
+    {
+      title: "Waves",
+      category: "MIAM Improvisation Ensemble",
+      year: "2024",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=zTNWzmSFYzk",
+        },
+      ],
+    },
+    {
+      title: "Histanbul_Deng-i",
+      category: "Duo",
+      year: "2025",
+      description: "Jehat Hekimoğlu & Miray Eslek",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=su0z223SE38",
+        },
+      ],
+    },
+    {
+      title: "Efe Rezenesi V2",
+      category: "Ses tasarımı",
+      year: "2026",
+      description: "Çiçek Anıtları Arşivi · Ayşegül Altunok Zilkovski",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=84O5JhWf1rY",
+        },
+      ],
     },
   ] as MediaItem[],
-  photo: [] as MediaItem[],
-  audio: [] as MediaItem[],
+  photo: [
+    {
+      title: "Portre — Klarinet",
+      category: "Sanatçı fotoğrafı",
+      year: "—",
+      image: "/images/portre-klarnet.jpg",
+    },
+    {
+      title: "Portre — Mozaik",
+      category: "Sanatçı fotoğrafı",
+      year: "—",
+      image: "/images/portre-mozaik-renkli.jpg",
+    },
+    {
+      title: "Portre — Mozaik (siyah-beyaz)",
+      category: "Sanatçı fotoğrafı",
+      year: "—",
+      image: "/images/portre-mozaik-sb.jpg",
+      imagePosition: "28% 42%",
+    },
+    {
+      title: "Sahne",
+      category: "Performans",
+      year: "—",
+      image: "/images/hero-sahne.jpg",
+    },
+    {
+      title: "Afife Tiyatro Ödülleri",
+      category: "Ödül töreni",
+      year: "2025",
+      image: "/images/afife-odul.jpg",
+    },
+  ] as MediaItem[],
+  audio: [
+    {
+      title: "Miray Eslek ile Gürültü ve Müzik",
+      category: "Podcast · Psikoloji Sohbetleri",
+      year: "2020",
+      links: [
+        {
+          label: "Dinle",
+          href: "https://open.spotify.com/episode/3nEtrUU007Dn5btx3qmhjD",
+        },
+      ],
+    },
+    {
+      title: "This Fire (Live)",
+      category: "Duo",
+      year: "2023",
+      description: "Nihâl & Miray Eslek (klarinet)",
+      links: [
+        {
+          label: "Dinle",
+          href: "https://open.spotify.com/intl-tr/track/3ZRXIzVq4he5zGvw00ep3m",
+        },
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=7iDvZIMfzK0",
+        },
+      ],
+    },
+    {
+      title: "Şenkop ft. Miray Eslek — Mayıs Ayı Gelende",
+      category: "İşbirliği",
+      year: "2025",
+      links: [
+        {
+          label: "Dinle",
+          href: "https://open.spotify.com/intl-tr/track/45UsM8eGtPBRQM9kjlLyvu",
+        },
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=K4hXJEjards",
+        },
+      ],
+    },
+    {
+      title: "Çamur",
+      category: "Klarinet & performans",
+      year: "2026",
+      description: "Cemâl Acet",
+      links: [
+        {
+          label: "Dinle",
+          href: "https://open.spotify.com/intl-tr/track/4kffQK25pwmWl1d24eftZy",
+        },
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/watch?v=Lxw5YjDnIcI",
+        },
+      ],
+    },
+  ] as MediaItem[],
   press: [] as MediaItem[],
 };
 
@@ -133,6 +362,7 @@ export const worksSections = [
     description:
       "Tiyatro ve sahne projelerinde müzik tasarımı ve performans.",
     image: "/images/poster-cerkes-ridvan.jpg",
+    href: "/isler/tiyatro",
   },
   {
     id: "performans",
@@ -142,23 +372,145 @@ export const worksSections = [
   },
   {
     id: "soundpainting",
-    title: "Soundpainting",
+    title: "Soundpainting ve İhtimaller",
     description:
-      "Kolektif doğaçlama, atölye ve canlı kompozisyon çalışmaları.",
-    image: "/images/soundpainting-atolyetez.jpg",
+      "Canlı kompozisyon, atölye ve performans sanatları buluşması.",
+    image: "/images/sp-ihtimaller-afis.jpg",
+    href: "/isler/soundpainting-ve-ihtimaller",
+  },
+  {
+    id: "sen-hangi-istanbulsun",
+    title: "Sen Hangi İstanbul'sun?",
+    description:
+      "İstanbul'un gündelik anlarından doğan fotoğraf serisi.",
+    image: "/images/istanbul-agac.jpg",
+    href: "/isler/sen-hangi-istanbulsun",
   },
 ];
+
+export const istanbulProject = {
+  title: "Sen Hangi İstanbul'sun?",
+  instagram: "https://instagram.com/sen_hangi_istanbulsun_",
+  instagramHandle: "@sen_hangi_istanbulsun_",
+  credit:
+    "Bu metin, 2025–2026 eğitim ve öğretim yılı içerisinde, Kadir Has Üniversitesi Görsel İletişim Tasarımı Bölümü mezuniyet projesi kapsamında Kadınlar Dünyası dergisinde yayımlanmıştır.",
+  intro: [
+    "Bu proje, İstanbul'un farklı yerlerinde çekilmiş fotoğraflardan oluşuyor: denizin dalgası, uçan bir martı, güneşe yüzü dönen bir kedi, yapraklar, ağaçlar, boğazın suları, havadaki bulutlar, gökkuşağı, yağmur, dolunay gibi gündelik hayatımızda karşılaştığımız her bir an gibi.",
+    "Şehrin içinde küçük karşılaşmalardan doğan bu fikir, yaklaşık 3 yıl önce Beşiktaş–Kadıköy vapuruna binerken aklıma geldi. O gün, kişisel Instagram hesabımda ilk kez şu soruyu sordum: \"Sen hangi İstanbul'sun?\". O günden bugüne İstanbul'la kurduğum bağ; bazen mutluluk, bazen durağanlık, bazen de tarif edemediğim bir his oldu. Ama ne olursa olsun, bu şehirden kopamadığımı fark ettim.",
+    "Geçtiğimiz günlerde, Kadir Has Üniversitesi Görsel İletişim Tasarımı Bölümü mezuniyet projesi kapsamında Kadınlar Dünyası dergisi üzerine çalışan Esin ile konuşurken, bu projeyi de paylaşmak istedim.",
+    "Şimdilik kendi içimden geçen bir İstanbul hâlini paylaşıyorum. Dilerim zamanla, \"Sen hangi İstanbul'sun?\" daha kolektif bir üretim alanına dönüşür. Şehri; kendimize bir ev ve bir arkadaş kılabileceğimiz günlere…",
+  ],
+  photos: [
+    {
+      src: "/images/istanbul-agac.jpg",
+      title: "Acıbadem'de, gölgesinde bir ağaç",
+      location: "Acıbadem",
+    },
+    {
+      src: "/images/istanbul-patika.jpg",
+      title: "Güneşle parıldayanlar ve patika bir yol",
+      location: "Hacıosman Korusu",
+    },
+    {
+      src: "/images/istanbul-bulut.jpg",
+      title: "Yüzü güneşte ve aklı bulutlarda olan bir gün",
+      location: "İstanbul",
+    },
+  ],
+};
+
+export const soundpaintingProject = {
+  title: "Soundpainting ve İhtimaller",
+  subtitle: "Performans Sanatları Buluşması",
+  instagram: "https://instagram.com/soundpainting_ve_ihtimaller",
+  instagramHandle: "@soundpainting_ve_ihtimaller",
+  email: "mirayeslek@gmail.com",
+  intro: [
+    "Soundpainting ve İhtimaller Atölyesi, performans sanatlarıyla ilgilenen katılımcılar için Soundpainting (canlı kompozisyon) işaret dili aracılığıyla anda üretilen ve kolektif bir performans deneyimi pratiğidir. Atölyeler, klarinetist ve müzik eğitmeni Miray Eslek tarafından düzenlenir.",
+    "Soundpainting, müzik ve diğer performans sanatlarında kullanılan disiplinlerarası bir işaret dilidir. Performansı yöneten Soundpainter, işaretler aracılığıyla katılımcılardan ses, hareket, hikâye, karakter, ritim, tavır ya da farklı performatif fikirler üretmelerini ister ve bunları anlık olarak ortak bir kompozisyonda bir araya getirir.",
+  ],
+  sections: [
+    {
+      title: "Atölye yapısı",
+      paragraphs: [
+        "Çalışma, Soundpainting Seviye 1 işaret dili üzerine uygulamalı bir giriş niteliğindedir. Katılımcılar Soundpainting'in temel cümle yapılarını deneyimlerken müzik, dans, tiyatro, hareket, anlatı ve görsel sanatlar gibi farklı performans alanlarına yönelik örneklerle çalışırlar.",
+        "2 saat süren bu çalışmada katılımcılar Soundpainting'in temel işaretleriyle tanışarak sesi, hareketi ve performatif öğeleri birlikte düşünmeyi ve uygulamayı deneyimler. Atölye akustik olarak yürütülür; müzisyenlerin enstrümanlarını getirmeleri tavsiye edilir. Her seviyeden katılımcıya açıktır ve herhangi bir ön koşul gerektirmez.",
+      ],
+    },
+    {
+      title: "Öğrenme alanları",
+      paragraphs: [
+        "Katılımcılar performans üretiminde yaratıcılık, doğaçlama, birlikte üretme ve eşlik etme becerilerini geliştirir. Farklı disiplinlerin bir araya geldiği ortak üretim süreçleri sayesinde sahne kurma, performansı biçimlendirme, güven ilişkisi geliştirme ve kolektif düşünme deneyimi kazanırlar.",
+      ],
+    },
+    {
+      title: "Kimler için?",
+      paragraphs: [
+        "Atölye; müzik, tiyatro, dans, hareket ve diğer performans sanatlarına ilgi duyan sanatçılar, öğrenciler, eğitmenler, akademisyenler ve yaratıcı üretim süreçlerine merak duyan herkes için tasarlanmıştır.",
+        "İçerik, çocuklar, gençler ve yetişkinlerle çalışılabilecek esneklikte kurgulanır; uygulamalar katılımcı grubunun yaşına, deneyimine ve ihtiyaçlarına göre uyarlanır.",
+      ],
+    },
+  ],
+  images: [
+    "/images/sp-ihtimaller-afis.jpg",
+    "/images/sp-ihtimaller-1.jpg",
+    "/images/sp-ihtimaller-2.jpg",
+    "/images/sp-ihtimaller-3.jpg",
+  ],
+};
+
+export const cerkesRidvanProject = {
+  title: "Çerkes Rıdvan'ın Dolabı",
+  fullTitle: "Aşk Yolunda İstanbul'da Neler Olmuş? Çerkes Rıdvan'ın Dolabı",
+  basedOn: "Reşad Ekrem Koçu'dan",
+  festival: "İstanbul Tiyatro Festivali · Bahçe Galata",
+  year: "2025–2026",
+  role: "Müzisyen · klarinet",
+  musicDirector: "Gökçe \"CheChe\" Gürçay",
+  musicians: ["Volkan İncüvez", "Miray Eslek", "Özlem Kaya", "Gökçe \"CheChe\" Gürçay"],
+  award: {
+    title: "Yılın En Başarılı Sahne Müziği",
+    ceremony: "28. Yapı Kredi Afife Tiyatro Ödülleri",
+  },
+  intro: [
+    "2025–2026 sanat sezonunda İstanbul Tiyatro Festivali'nde sahnelenen Aşk Yolunda İstanbul'da Neler Olmuş? Çerkes Rıdvan'ın Dolabı oyununun müzisyen ekibinde yer aldı.",
+    "Oyunun müzik direktörü Gökçe \"CheChe\" Gürçay, Özlem Kaya ve Volkan İncüvez ile birlikte, 28. Yapı Kredi Afife Tiyatro Ödülleri'nde Yılın En Başarılı Sahne Müziği ödülünü aldı.",
+  ],
+  credits: [
+    { label: "Anlatıcı", value: "Cem Zeynel Kılıç" },
+    { label: "Yapımcılar", value: "Yağmur Dolkun, Tülin Özen" },
+    { label: "Metni uyarlayan", value: "Lara Lakay" },
+    { label: "Müzik direktörü", value: "Gökçe \"CheChe\" Gürçay" },
+    {
+      label: "Müzisyenler",
+      value: "Volkan İncüvez, Miray Eslek, Özlem Kaya, Gökçe \"CheChe\" Gürçay",
+    },
+  ],
+  images: [
+    {
+      src: "/images/poster-cerkes-ridvan.jpg",
+      alt: "Çerkes Rıdvan'ın Dolabı afişi",
+      wide: true,
+    },
+    {
+      src: "/images/afife-odul.jpg",
+      alt: "Afife Tiyatro Ödülleri",
+    },
+    {
+      src: "/images/afife-ekip.jpg",
+      alt: "Afife ödül töreni — müzik ekibi",
+    },
+  ],
+};
 
 export const bio = {
   intro:
     "Miray Eslek, klarnet, vokal, doğaçlama ve araştırma pratikleri üzerinden sesin, müziğin ve toplumsal deneyimin kesişiminde çalışan multidisipliner bir sanatçıdır.",
   paragraphs: [
-    "Klarinet ve ses onun için yalnızca enstrüman değil; dinlemenin, düşünmenin ve bir arada üretmenin yollarıdır. Konser, festival, duo performans ve sahne çalışmaları yürütmekte; müzik pratiğini performans ile araştırma arasında sürekli hareket eden bir alan olarak ele almaktadır.",
-    "2009'dan bu yana İstanbul Klarnet Korosu'nun sanatçısıdır. Koronun konser ve projelerinde aktif olarak yer almakta; festivallere katılarak klarnetçi olarak sahne deneyimini sürdürmektedir.",
-    "Doğaçlama onun için yalnızca anlık üretim değil; karşılaşma, iletişim ve birlikte düşünme biçimidir. 2012'den bu yana İstanbul Soundpainting Orkestrası'nın kurucu üyelerindendir. Soundpainting ve İhtimaller başlığı altındaki atölye buluşmalarıyla kolektif doğaçlama ve canlı kompozisyon pratiğini farklı mekân ve topluluklarla buluşturmaktadır.",
-    "Mimar Sinan Güzel Sanatlar Üniversitesi'nde sosyoloji eğitimini tamamlamıştır. Müzik sosyolojisi, gürültü ve kent deneyimi üzerine akademik çalışmalarını İstanbul Teknik Üniversitesi MİAM'da sürdürmüş; Sefarad şarkılarının kültürel miras olarak incelendiği yüksek lisans teziyle mezun olmuştur. Arter'deki Sonified buluşmaları, Buluştur Beyoğlu konuşma dizisi ve Beyoğlu'nun sesleri üzerine yürüttüğü çalışmalar, araştırma ile sahne pratiği arasındaki geçişi beslemektedir.",
-    "Ayşe Akarsu ile birlikte nuyOmusic çatısı altında çocuklardan yetişkinlere uzanan atölye ve performans çalışmaları yürütmektedir. Müzisyen Nihal ile kaydettiği This Fire, Hakan Kurşun'un önerisiyle başlayan Her Güne Bir Melodi serisi ve cml.act ile yürüttüğü ÇAMUR; beden, ses ve temasın aynı anda sahnelendiği işlerinden bazılarıdır.",
-    "2025'te İstanbul Tiyatro Festivali'nde sahnelenen Çerkes Rıdvan'ın Dolabı'nın müzik ekibi, 28. Yapı Kredi Afife Tiyatro Ödülleri'nde Yılın En Başarılı Sahne Müziği ödülüne layık görülmüştür. Liverpool Biennial, Erasmus+ projeleri ve uluslararası işbirliklerinde müzisyen ve araştırmacı olarak yer almaya devam etmekte; konser, atölye ve yazı arasında süren bir pratikle çalışmalarını sürdürmektedir.",
+    "İstanbul'da doğdu; müzikle birlikte büyüdü. 2005'te İstanbul Üniversitesi Devlet Konservatuvarı Yarı Zamanlı Klarnet Bölümü'ne kabul edildi, 2014'te mezun oldu. 2016'da Mimar Sinan Güzel Sanatlar Üniversitesi Sosyoloji Bölümü'nde lisansını, 2019'da aynı bölümde yüksek lisansını tamamladı. 2026'da İstanbul Teknik Üniversitesi Müzik İleri Araştırmalar Merkezi'nde (İTÜ MİAM) müzik yüksek lisansını; icracılık, performans ve doğaçlama alanlarına odaklanan çalışmalarıyla bitirdi.",
+    "Klarinet ve ses onun için yalnızca enstrüman değil; dinlemenin, düşünmenin ve bir arada üretmenin yollarıdır. 2010'dan beri İstanbul Klarnet Derneği üyesidir; klasik müzik çalışmalarına İstanbul Klarnet Korosu ile devam eder. 2015'ten bu yana soundpainting üzerine çalışmalarını Walter Thompson Soundpainting Think Tank, Soundpainting Lab Ensemble, İstanbul Soundpainting Orkestra ve MIAM Improvisation Ensemble ile klarnet ve vokal alanında sürdürür. Yaratıcılık, doğaçlama ve performansla birlikte Soundpainting ve İhtimaller serisini düzenler.",
+    "Akademik çalışmalarını müzik sosyolojisi alanında, özellikle gürültü ve müzik ilişkisi üzerine sürdürür. Hakan Kurşun'un mentörlüğünde yürüttüğü müzik üretim ve analizi derslerini \"Her Güne Bir Melodi\" projesine dönüştürerek yüz gün boyunca her gün yeni bir müzik tasarımı üretti.",
+    "2025–2026 sanat sezonunda, İstanbul'da Aşk Yolunda Neler Olmuş: Çerkes Rıdvan'ın Dolabı oyununun müzisyen ekibinde yer aldı; oyunun müzik direktörü Gökçe \"CheChe\" Gürçay, Özlem Kaya ve Volkan İncüvez ile birlikte 28. Yapı Kredi Afife Tiyatro Ödülleri'nde Yılın En Başarılı Sahne Müziği ödülünü aldı. Nisan 2026 itibarıyla Cemâl Acet'in yönettiği Çamur'un müzik tasarımlarını klarnet icrası ve sahne performansıyla sürdürür.",
   ],
 };
 
