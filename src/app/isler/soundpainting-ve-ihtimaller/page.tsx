@@ -77,6 +77,23 @@ export default function SoundpaintingProjectPage() {
         </p>
       </div>
 
+      {soundpaintingProject.playlists.length > 0 && (
+        <div className="mt-10 space-y-3">
+          {soundpaintingProject.playlists.map((playlist) => (
+            <p key={playlist.href} className="text-sm">
+              <a
+                href={playlist.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:underline"
+              >
+                {playlist.title} — İzle →
+              </a>
+            </p>
+          ))}
+        </div>
+      )}
+
       <div className="mt-14 grid gap-4 sm:grid-cols-2">
         {soundpaintingProject.images.map((src, index) => (
           <div

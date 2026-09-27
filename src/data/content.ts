@@ -122,6 +122,54 @@ export type MediaItem = {
 export const mediaSections = {
   video: [
     {
+      title: "Miray Eslek: Klarinet",
+      category: "Playlist",
+      year: "—",
+      description: "Klarinet çalışmaları arşivi.",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/playlist?list=PLW8CTujLc0vY",
+        },
+      ],
+    },
+    {
+      title: "İstanbul Soundpainting Orkestra (İSPO)",
+      category: "Playlist · Soundpainting",
+      year: "—",
+      description: "İSPO performans kayıtları.",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/playlist?list=PLgA3752jY2GHiXoFxVWcXPvEBlx34JmVI",
+        },
+      ],
+    },
+    {
+      title: "Soundpainting Lab Ensemble",
+      category: "Playlist · Soundpainting",
+      year: "—",
+      description: "Soundpainting Lab Ensemble kayıtları.",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/playlist?list=PLenY_3IQCJA4",
+        },
+      ],
+    },
+    {
+      title: "Soundpainting Think Tank 2022",
+      category: "Playlist · Soundpainting",
+      year: "2022",
+      description: "Soundpainting Think Tank 2022 kayıtları.",
+      links: [
+        {
+          label: "İzle",
+          href: "https://www.youtube.com/playlist?list=PLRaQkKT4gZ-0",
+        },
+      ],
+    },
+    {
       title: "İstanbul Soundpainting Orchestra — Ç.A.K. Full Concert",
       category: "Soundpainting",
       year: "2016",
@@ -294,6 +342,18 @@ export const mediaSections = {
   ] as MediaItem[],
   audio: [
     {
+      title: "Miray Eslek: Klarinet",
+      category: "Playlist",
+      year: "—",
+      description: "Klarinet çalışmaları Spotify arşivi.",
+      links: [
+        {
+          label: "Dinle",
+          href: "https://open.spotify.com/playlist/1eyxcwGoDKET3SovyywJxv",
+        },
+      ],
+    },
+    {
       title: "Miray Eslek ile Gürültü ve Müzik",
       category: "Podcast · Psikoloji Sohbetleri",
       year: "2020",
@@ -449,6 +509,20 @@ export const soundpaintingProject = {
         "Atölye; müzik, tiyatro, dans, hareket ve diğer performans sanatlarına ilgi duyan sanatçılar, öğrenciler, eğitmenler, akademisyenler ve yaratıcı üretim süreçlerine merak duyan herkes için tasarlanmıştır.",
         "İçerik, çocuklar, gençler ve yetişkinlerle çalışılabilecek esneklikte kurgulanır; uygulamalar katılımcı grubunun yaşına, deneyimine ve ihtiyaçlarına göre uyarlanır.",
       ],
+    },
+  ],
+  playlists: [
+    {
+      title: "İstanbul Soundpainting Orkestra (İSPO)",
+      href: "https://www.youtube.com/playlist?list=PLgA3752jY2GHiXoFxVWcXPvEBlx34JmVI",
+    },
+    {
+      title: "Soundpainting Lab Ensemble",
+      href: "https://www.youtube.com/playlist?list=PLenY_3IQCJA4",
+    },
+    {
+      title: "Soundpainting Think Tank 2022",
+      href: "https://www.youtube.com/playlist?list=PLRaQkKT4gZ-0",
     },
   ],
   images: [
