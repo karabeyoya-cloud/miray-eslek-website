@@ -537,7 +537,7 @@ export const cerkesRidvanProject = {
   title: "Çerkes Rıdvan'ın Dolabı",
   fullTitle: "Aşk Yolunda İstanbul'da Neler Olmuş? Çerkes Rıdvan'ın Dolabı",
   basedOn: "Reşad Ekrem Koçu'dan",
-  festival: "İstanbul Tiyatro Festivali · Bahçe Galata",
+  festival: "İstanbul Tiyatro Festivali · Dolkun Production · Bahçe Galata",
   year: "2025–2026",
   role: "Müzisyen · klarinet",
   musicDirector: "Gökçe \"CheChe\" Gürçay",
@@ -620,7 +620,7 @@ export const events = {
     {
       date: "2025",
       title: "Çerkes Rıdvan'ın Dolabı",
-      venue: "İstanbul Tiyatro Festivali · Bahçe Galata",
+      venue: "İstanbul Tiyatro Festivali · Dolkun Production · Bahçe Galata",
       role: "Sahne müziği · Afife ödülü",
       category: "tiyatro" as const,
       image: "/images/poster-cerkes-ridvan.jpg",
