@@ -38,8 +38,8 @@ export const artistStatement = {
   summary:
     "Klarnet, vokal, doğaçlama ve araştırma pratikleri üzerinden sesin, müziğin ve toplumsal deneyimin kesişiminde çalışan multidisipliner sanatçı.",
   homeThoughts: [
-    "Ses, benim için yalnızca duyulan bir yapı değil; içinde yaşadığımız dünyayı anlamanın yollarından biridir.",
-    "Doğaçlama benim için yalnızca anlık üretim değil; karşılaşma, iletişim ve birlikte düşünme biçimidir.",
+    "Ses, yaşadığımız dünyayı anlamanın yollarından biridir.",
+    "Doğaçlama bir karşılaşma, iletişim ve birlikte düşünme biçimidir.",
   ],
   homeIntro: [
     "Klarnet, vokal ve doğaçlama pratiklerini araştırma ile performans arasında taşır; ses, gürültü ve dinleme üzerine çalışır.",
