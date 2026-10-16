@@ -74,7 +74,11 @@ export default function TheatrePage() {
                 src={image.src}
                 alt={image.alt}
                 fill
-                className="object-cover"
+                className={
+                  "objectFit" in image && image.objectFit === "contain"
+                    ? "object-contain"
+                    : "object-cover"
+                }
                 sizes={
                   image.wide
                     ? "(max-width: 768px) 100vw, 720px"
