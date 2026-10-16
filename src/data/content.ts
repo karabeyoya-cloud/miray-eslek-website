@@ -800,7 +800,7 @@ export const publications = [
     year: "2023",
     title:
       "Sephardic Songs: An Investigation of Music as a Cultural, Emotional, and Nostalgic Heritage",
-    type: "Yüksek Lisans Tezi",
+    type: "Dönem Projesi",
     venue: "İTÜ MİAM",
   },
   {
