@@ -12,6 +12,18 @@ const subjectLabels: Record<string, string> = {
   diger: "Diğer",
 };
 
+async function parseJsonSafe<T extends Record<string, unknown>>(
+  response: Response,
+): Promise<T | null> {
+  const text = await response.text();
+  if (!text.trim()) return null;
+  try {
+    return JSON.parse(text) as T;
+  } catch {
+    return null;
+  }
+}
+
 export function ContactAside() {
   return (
     <div className="space-y-6">
@@ -39,7 +51,8 @@ export function ContactForm() {
     setLoading(true);
     setError(null);
 
-    const data = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const data = new FormData(form);
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const subjectKey = String(data.get("subject") ?? "diger");
@@ -51,58 +64,83 @@ export function ContactForm() {
       return;
     }
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();
     const subjectLabel = subjectLabels[subjectKey] ?? "İletişim";
 
     try {
+      // Prefer browser → Web3Forms FormData (free tier; avoid server proxy / HTML challenges).
       if (accessKey) {
+        const payload = new FormData();
+        payload.append("access_key", accessKey);
+        payload.append("name", name);
+        payload.append("email", email);
+        payload.append("subject", `Miray Eslek — ${subjectLabel}`);
+        payload.append("from_name", name);
+        payload.append("replyto", email);
+        payload.append(
+          "message",
+          `Ad Soyad: ${name}\nE-posta: ${email}\nKonu: ${subjectLabel}\n\n${message}`,
+        );
+        // Honeypot: must stay unchecked / empty for humans
+        payload.append("botcheck", "");
+
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            access_key: accessKey,
-            subject: `Miray Eslek — ${subjectLabel}`,
-            from_name: name,
-            email,
-            replyto: email,
-            message: `Ad Soyad: ${name}\nE-posta: ${email}\nKonu: ${subjectLabel}\n\n${message}`,
-          }),
+          body: payload,
+          headers: { Accept: "application/json" },
         });
 
-        const result = (await response.json()) as {
+        const result = await parseJsonSafe<{
           success?: boolean;
           message?: string;
-        };
+        }>(response);
+
+        if (!result) {
+          setError(
+            "Web3Forms yanıtı okunamadı. Lütfen tekrar deneyin veya doğrudan e-posta gönderin.",
+          );
+          return;
+        }
 
         if (!response.ok || !result.success) {
-          setError(result.message ?? "Mesaj gönderilemedi. Lütfen tekrar deneyin.");
+          setError(
+            typeof result.message === "string" && result.message
+              ? result.message
+              : "Mesaj gönderilemedi. Lütfen tekrar deneyin.",
+          );
           return;
         }
 
         setSubmitted(true);
+        form.reset();
         return;
       }
 
       // NEXT_PUBLIC_ missing: fall back to server proxy (WEB3FORMS_ACCESS_KEY)
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ name, email, subject: subjectKey, message }),
       });
 
-      const result = (await response.json()) as { error?: string };
+      const result = await parseJsonSafe<{ error?: string; success?: boolean }>(
+        response,
+      );
 
       if (!response.ok) {
-        setError(result.error ?? "Mesaj gönderilemedi. Lütfen tekrar deneyin.");
+        setError(
+          result?.error ??
+            "Mesaj gönderilemedi. Lütfen tekrar deneyin veya doğrudan e-posta gönderin.",
+        );
         return;
       }
 
       setSubmitted(true);
+      form.reset();
     } catch {
-      setError("Bağlantı hatası. Lütfen tekrar deneyin veya doğrudan e-posta gönderin.");
+      setError(
+        "Bağlantı hatası. Lütfen tekrar deneyin veya doğrudan e-posta gönderin.",
+      );
     } finally {
       setLoading(false);
     }
@@ -117,12 +155,23 @@ export function ContactForm() {
         <div className="py-12 text-center sm:py-16">
           <p className="text-lg text-fg">Teşekkürler.</p>
           <p className="mt-3 text-sm text-muted">
-            Mesajınız {site.email} adresine iletildi. En kısa sürede dönüş yapılacaktır.
+            Mesajınız {site.email} adresine iletildi. En kısa sürede dönüş
+            yapılacaktır.
           </p>
         </div>
       ) : (
         <>
           <div className="space-y-5">
+            {/* Honeypot — hidden from users; bots that fill it are rejected by Web3Forms */}
+            <input
+              type="checkbox"
+              name="botcheck"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+              style={{ display: "none" }}
+            />
             <div>
               <label htmlFor="name" className="text-sm text-muted">
                 Ad Soyad

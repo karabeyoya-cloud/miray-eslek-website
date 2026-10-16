@@ -15,9 +15,29 @@ type ContactPayload = {
   message?: string;
 };
 
+async function parseWeb3FormsResponse(response: Response): Promise<{
+  success?: boolean;
+  message?: string;
+  raw: string;
+}> {
+  const raw = await response.text();
+  if (!raw.trim()) {
+    return { raw: "" };
+  }
+  try {
+    const data = JSON.parse(raw) as { success?: boolean; message?: string };
+    return { ...data, raw };
+  } catch {
+    return { raw };
+  }
+}
+
 export async function POST(request: Request) {
-  const accessKey =
-    process.env.WEB3FORMS_ACCESS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+  const accessKey = (
+    process.env.WEB3FORMS_ACCESS_KEY ||
+    process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+    ""
+  ).trim();
 
   if (!accessKey) {
     return Response.json(
@@ -49,30 +69,35 @@ export async function POST(request: Request) {
   const subjectLabel = subjectLabels[subjectKey] ?? "İletişim";
 
   try {
+    // FormData is more reliable than JSON for Web3Forms free tier / edge proxies.
+    const payload = new FormData();
+    payload.append("access_key", accessKey);
+    payload.append("name", name);
+    payload.append("email", email);
+    payload.append("subject", `Miray Eslek — ${subjectLabel}`);
+    payload.append("from_name", name);
+    payload.append("replyto", email);
+    payload.append(
+      "message",
+      `Ad Soyad: ${name}\nE-posta: ${email}\nKonu: ${subjectLabel}\n\n${message}`,
+    );
+    payload.append("botcheck", "");
+
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        access_key: accessKey,
-        subject: `Miray Eslek — ${subjectLabel}`,
-        from_name: name,
-        email,
-        replyto: email,
-        message: `Ad Soyad: ${name}\nE-posta: ${email}\nKonu: ${subjectLabel}\n\n${message}`,
-      }),
+      body: payload,
+      headers: { Accept: "application/json" },
     });
 
-    let data: { success?: boolean; message?: string };
-    try {
-      data = (await response.json()) as { success?: boolean; message?: string };
-    } catch {
+    const data = await parseWeb3FormsResponse(response);
+
+    if (!data.raw.trim() || data.success === undefined) {
+      const hint =
+        data.raw.trim().slice(0, 160) ||
+        `HTTP ${response.status} (boş veya HTML yanıt)`;
       return Response.json(
         {
-          error:
-            "Web3Forms yanıtı okunamadı. Lütfen tekrar deneyin veya doğrudan e-posta gönderin.",
+          error: `Web3Forms yanıtı okunamadı (${hint}). Lütfen NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ile istemci gönderimini kullanın veya doğrudan e-posta gönderin.`,
         },
         { status: 502 },
       );
@@ -80,7 +105,11 @@ export async function POST(request: Request) {
 
     if (!response.ok || !data.success) {
       return Response.json(
-        { error: data.message ?? "Mesaj gönderilemedi. Lütfen tekrar deneyin." },
+        {
+          error:
+            data.message ??
+            "Mesaj gönderilemedi. Lütfen tekrar deneyin.",
+        },
         { status: 500 },
       );
     }
