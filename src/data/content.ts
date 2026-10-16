@@ -833,12 +833,6 @@ export const talks = [
     type: "Konuşma",
   },
   {
-    year: "2023",
-    title: "Sonified",
-    venue: "Arter İstanbul",
-    type: "Buluşma & performans",
-  },
-  {
     year: "2019",
     title: "Sesin Yolculuğunda Gürültünün Yeri ve Toplumsallığı",
     venue: "MSGSÜ Müzikoloji Bölümü",
