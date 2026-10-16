@@ -39,25 +39,52 @@ export function ContactForm() {
     setLoading(true);
     setError(null);
 
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      setError("İletişim formu henüz yapılandırılmamış.");
+      setLoading(false);
+      return;
+    }
+
     const data = new FormData(e.currentTarget);
-    const payload = {
-      name: String(data.get("name") ?? ""),
-      email: String(data.get("email") ?? ""),
-      subject: String(data.get("subject") ?? "diger"),
-      message: String(data.get("message") ?? ""),
-    };
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const subjectKey = String(data.get("subject") ?? "diger");
+    const message = String(data.get("message") ?? "").trim();
+
+    if (!name || !email || !message) {
+      setError("Lütfen tüm zorunlu alanları doldurun.");
+      setLoading(false);
+      return;
+    }
+
+    const subjectLabel = subjectLabels[subjectKey] ?? "İletişim";
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `Miray Eslek — ${subjectLabel}`,
+          from_name: name,
+          email,
+          replyto: email,
+          message: `Ad Soyad: ${name}\nE-posta: ${email}\nKonu: ${subjectLabel}\n\n${message}`,
+        }),
       });
 
-      const result = (await response.json()) as { error?: string };
+      const result = (await response.json()) as {
+        success?: boolean;
+        message?: string;
+      };
 
-      if (!response.ok) {
-        setError(result.error ?? "Mesaj gönderilemedi. Lütfen tekrar deneyin.");
+      if (!response.ok || !result.success) {
+        setError(result.message ?? "Mesaj gönderilemedi. Lütfen tekrar deneyin.");
         return;
       }
 

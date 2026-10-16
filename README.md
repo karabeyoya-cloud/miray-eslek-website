@@ -30,14 +30,14 @@ npx vercel --prod
 
 ## Contact form (direct email)
 
-The form sends messages to `mirayeslek@gmail.com` via [Web3Forms](https://web3forms.com) (free tier).
+The form submits from the browser to [Web3Forms](https://web3forms.com) (free tier requires client-side API use). Messages go to `mirayeslek@gmail.com`.
 
 1. Go to [web3forms.com](https://web3forms.com) and create an access key for `mirayeslek@gmail.com`.
 2. In Vercel → **Project → Settings → Environment Variables**, add:
-   - **Name:** `WEB3FORMS_ACCESS_KEY`
-   - **Value:** your access key from Web3Forms
+   - **Name:** `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`
+   - **Value:** your access key from Web3Forms (same value as any old `WEB3FORMS_ACCESS_KEY`)
    - **Environment:** Production (and Preview if you want)
-3. **Redeploy** the project.
+3. **Redeploy** the project so the public env var is baked into the client bundle.
 
 Until this key is set, the form shows a configuration error on submit.
 
