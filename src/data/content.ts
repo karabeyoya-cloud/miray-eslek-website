@@ -827,6 +827,12 @@ export const publications = [
 
 export const talks = [
   {
+    year: "2026",
+    title: "The İstanbul Encyclopedia and Music: The City, Noises and Possibilities",
+    venue: "Kadir Has Üniversitesi",
+    type: "Ders & Atölye",
+  },
+  {
     year: "2024",
     title: "Beyoğlu'nda Ses ve Gürültüleri \"Şimdide Düşlemek\"",
     venue: "Buluştur Beyoğlu · Tokatlıyan İş Hanı",
@@ -837,12 +843,6 @@ export const talks = [
     title: "Sesin Yolculuğunda Gürültünün Yeri ve Toplumsallığı",
     venue: "MSGSÜ Müzikoloji Bölümü",
     type: "Konuşma",
-  },
-  {
-    year: "2026",
-    title: "The İstanbul Encyclopedia and Music: The City, Noises and Possibilities",
-    venue: "Kadir Has Üniversitesi",
-    type: "Ders & Atölye",
   },
   {
     year: "2017",
