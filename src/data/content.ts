@@ -573,6 +573,7 @@ export const cerkesRidvanProject = {
     {
       src: "/images/afife-ekip.jpg",
       alt: "Afife ödül töreni — müzik ekibi",
+      wide: true,
       objectFit: "contain" as const,
     },
   ],

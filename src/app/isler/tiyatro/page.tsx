@@ -61,33 +61,53 @@ export default function TheatrePage() {
         </dl>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2">
-          {project.images.map((image) => (
-            <div
-              key={image.src}
-              className={`relative overflow-hidden bg-surface ${
-                image.wide
-                  ? "aspect-[3/4] sm:col-span-2 sm:aspect-[16/10]"
-                  : "aspect-[4/5]"
-              }`}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                className={
-                  "objectFit" in image && image.objectFit === "contain"
-                    ? "object-contain"
-                    : "object-cover"
-                }
-                sizes={
+          {project.images.map((image) => {
+            const contain =
+              "objectFit" in image && image.objectFit === "contain";
+
+            if (contain && image.wide) {
+              return (
+                <div
+                  key={image.src}
+                  className="flex justify-center bg-surface sm:col-span-2"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={318}
+                    height={427}
+                    className="h-auto w-full max-h-[28rem] object-contain"
+                    sizes="(max-width: 768px) 100vw, 720px"
+                    quality={90}
+                  />
+                </div>
+              );
+            }
+
+            return (
+              <div
+                key={image.src}
+                className={`relative overflow-hidden bg-surface ${
                   image.wide
-                    ? "(max-width: 768px) 100vw, 720px"
-                    : "(max-width: 640px) 100vw, 360px"
-                }
-                quality={90}
-              />
-            </div>
-          ))}
+                    ? "aspect-[3/4] sm:col-span-2 sm:aspect-[16/10]"
+                    : "aspect-[4/5]"
+                }`}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover"
+                  sizes={
+                    image.wide
+                      ? "(max-width: 768px) 100vw, 720px"
+                      : "(max-width: 640px) 100vw, 360px"
+                  }
+                  quality={90}
+                />
+              </div>
+            );
+          })}
         </div>
       </article>
     </PageShell>
