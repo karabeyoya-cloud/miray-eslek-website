@@ -91,7 +91,7 @@ export const gundemItems: GundemItem[] = [
   {
     label: "Son yayın",
     title: "Sephardic Songs",
-    detail: "Yüksek lisans tezi · İTÜ MİAM · 2023",
+    detail: "Dönem projesi · İTÜ MİAM · 2026",
     href: "/arastirma",
   },
   {
@@ -797,7 +797,7 @@ export const events = {
 
 export const publications = [
   {
-    year: "2023",
+    year: "2026",
     title:
       "Sephardic Songs: An Investigation of Music as a Cultural, Emotional, and Nostalgic Heritage",
     type: "Dönem Projesi",
