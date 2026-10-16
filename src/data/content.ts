@@ -839,9 +839,9 @@ export const talks = [
     type: "Konuşma",
   },
   {
-    year: "—",
+    year: "2026",
     title: "The İstanbul Encyclopedia and Music: The City, Noises and Possibilities",
-    venue: "MSGSÜ — VCD107",
+    venue: "Kadir Has Üniversitesi",
     type: "Ders & Atölye",
   },
   {
