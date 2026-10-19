@@ -78,8 +78,8 @@ export type GundemItem = {
 export const gundemItems: GundemItem[] = [
   {
     label: "Yaklaşan performans",
-    title: "Yakında duyurulacak",
-    detail: "Yeni konser ve sahne performansları",
+    title: "Silahşör Kızı Rabia Hanım",
+    detail: "24–25 Ekim · Phebus Müzayede Evi",
     href: "/etkinlikler?tab=upcoming",
   },
   {
@@ -616,7 +616,19 @@ const camurEvent = {
 };
 
 export const events = {
-  upcoming: [] as EventItem[],
+  upcoming: [
+    {
+      date: "2026",
+      month: "Eki",
+      title: "Silahşör Kızı Rabia Hanım",
+      venue: "Phebus Müzayede Evi · Asmalımescit",
+      role: "Müzisyen · klarinet",
+      category: "tiyatro" as const,
+      description:
+        "Reşad Ekrem Koçu'dan uyarlama; geçen yıl Çerkes Rıdvan'ın Dolabı ile başlayan serinin devamı. Phebus Müzayede Evi'nde prömiyer 24–25 Ekim. Müzik ekibinde Miray Eslek.",
+      external: "https://www.instagram.com/p/DeSRRw-Rt6m/",
+    },
+  ] satisfies EventItem[],
   current: [camurEvent],
   past: [
     {
