@@ -85,7 +85,7 @@ export const gundemItems: GundemItem[] = [
   {
     label: "Yeni proje",
     title: "ÇAMUR",
-    detail: "Fişekhane · İnteraktif performans",
+    detail: "24 Ekim 2026 · 11:00 · Büyükyalı",
     href: "/etkinlikler?tab=current",
   },
   {
@@ -599,18 +599,20 @@ export type EventItem = {
   category: "konser" | "atolye" | "tiyatro" | "panel";
   image?: string;
   description?: string;
+  external?: string;
 };
 
 const camurEvent = {
   date: "2026",
-  month: "Haz",
+  month: "Eki",
   title: "ÇAMUR",
-  venue: "Fişekhane · Büyükyalı",
+  venue: "Büyükyalı · Raife Cebeci Anaokulu",
   role: "Performans · müzik",
   category: "tiyatro" as const,
   image: "/images/camur-afis.jpg",
   description:
-    "Bedenin taşıdığı hikâyeler, sesin görünmeyen katmanları ve temasın dönüştürücü gücüyle kurulan performatif bir alan.",
+    "Seans: 24 Ekim 2026 Cumartesi 11:00. Bedenin taşıdığı hikâyeler, sesin görünmeyen katmanları ve temasın dönüştürücü gücüyle kurulan performatif bir alan.",
+  external: "https://tiyatrolar.com.tr/tiyatro/camur",
 };
 
 export const events = {

@@ -57,6 +57,16 @@ export function EventCards({ items }: { items: EventItem[] }) {
             {event.description ? (
               <p className="mt-3 text-sm leading-relaxed text-fg/70">{event.description}</p>
             ) : null}
+            {event.external ? (
+              <a
+                href={event.external}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-block text-sm text-accent transition-colors hover:text-fg"
+              >
+                Detay →
+              </a>
+            ) : null}
           </div>
         </article>
       ))}
@@ -101,6 +111,16 @@ export function EventList({ items }: { items: EventItem[] }) {
             </p>
             {event.description ? (
               <p className="mt-2 text-sm leading-relaxed text-fg/70">{event.description}</p>
+            ) : null}
+            {event.external ? (
+              <a
+                href={event.external}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-block text-sm text-accent transition-colors hover:text-fg"
+              >
+                Detay →
+              </a>
             ) : null}
           </div>
         </article>
