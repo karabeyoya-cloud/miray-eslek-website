@@ -618,8 +618,9 @@ export const events = {
       venue: "Phebus Müzayede Evi · Asmalımescit",
       role: "Müzisyen · klarinet",
       category: "tiyatro" as const,
+      image: "/images/poster-rabia-hanim.jpg",
       description:
-        "Reşad Ekrem Koçu'dan uyarlama; geçen yıl Çerkes Rıdvan'ın Dolabı ile başlayan serinin devamı. Phebus Müzayede Evi'nde prömiyer 24–25 Ekim. Müzik ekibinde Miray Eslek.",
+        "Kafes Arkası Günahkarları serisi · Reşad Ekrem Koçu'dan uyarlama; geçen yıl Çerkes Rıdvan'ın Dolabı ile başlayan serinin devamı. Phebus Müzayede Evi'nde prömiyer 24–25 Ekim. Müzik ekibinde Miray Eslek.",
       external: "https://www.instagram.com/p/DeSRRw-Rt6m/",
     },
   ] satisfies EventItem[],
