@@ -94,12 +94,6 @@ export const gundemItems: GundemItem[] = [
     detail: "Dönem projesi · İTÜ MİAM · 2026",
     href: "/arastirma",
   },
-  {
-    label: "Son atölye",
-    title: "Soundpainting ve İhtimaller",
-    detail: "Performans sanatları buluşması · 2025",
-    href: "/etkinlikler?tab=past",
-  },
 ];
 
 export type MediaLink = {
